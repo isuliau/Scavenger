@@ -1,1 +1,3 @@
 This game is about surviving in an island, move with wasd or with keys, farm trees and open your inventory with escape, currently just a proof of concept but will work on it in future weeks.
+
+Im currently in a hurry to upload and some things may be unfinished but I can promise to work on it further. with that said this readme WILL be revised to later show what the game is about further rather than just promising to keep working on it. I love to work on these projects so I wouldnt be surprised if I finished next update before it could be checked by the Terra playtesters (this is a terra submission)
