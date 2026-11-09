@@ -13,12 +13,12 @@ public class Spawner : MonoBehaviour
     Vector3Int cellPosition;
     BoundsInt bounds;
 
-    private List<Vector3Int> validTilePositions = new List<Vector3Int>();
+    public List<Vector3Int> validTilePositions = new List<Vector3Int>();
 
     private void Start()
     {
         SaveAllTiles();
-        InvokeRepeating(nameof(RandomTile), spawnInterval, spawnInterval);
+        InvokeRepeating(nameof(RandomTile), 0, spawnInterval);
     }
     
     private void SaveAllTiles()
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
         foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
-            if (Tilemap.HasTile(pos))
+            if (Tilemap.HasTile(pos)) 
             {
                 validTilePositions.Add(pos);
             }
@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
         int randomindex = UnityEngine.Random.Range(0, validTilePositions.Count);
         cellPosition = validTilePositions[randomindex];
         validTilePositions.Remove(cellPosition);
-        UnityEngine.Vector3 spawnPos = new UnityEngine.Vector3(Tilemap.GetCellCenterWorld(cellPosition).x, Tilemap.GetCellCenterWorld(cellPosition).y+0.25f, 0);
+        UnityEngine.Vector3 spawnPos = Tilemap.GetCellCenterWorld(cellPosition) + UnityEngine.Vector3.up * 0.25f;
         GameObject ObjectClone = Instantiate(objectToSpawn, spawnPos, quaternion.identity);
     ObjectClone.SetActive(true);
         }

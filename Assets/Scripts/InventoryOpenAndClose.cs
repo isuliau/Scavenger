@@ -13,7 +13,6 @@ public class InventoryOpenAndClose : MonoBehaviour
     {
         esc.SetActive(!setActive);
         inventory.SetActive(setActive);
-        X.SetActive(setActive);
         setActive = !setActive;
         if(Time.timeScale == 0f) {Time.timeScale = 1f; animator.enabled = true;}
         else {Time.timeScale = 0f; animator.enabled = false;}

@@ -33,6 +33,6 @@ public class Cursor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "tree"){ slider = collision.transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>(); slider.value = slider.value - damage; Debug.Log("Worked");}
+        if(collision.tag == "tree"){ slider = collision.transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>(); slider.value = slider.value - damage;}
     }
 }
