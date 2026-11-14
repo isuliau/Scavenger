@@ -26,8 +26,11 @@ public class item : MonoBehaviour
                 
                 isCollected = true;
                 GetComponent<Collider2D>().enabled = false;
-                inventoryManager.AddItem(itemname, quantity, sprite);
+                int leftoveritems = inventoryManager.AddItem(itemname, quantity, sprite);
+                if(leftoveritems <= 0)
                 Destroy(gameObject);
+                else 
+                quantity = leftoveritems;
             }
         }
     }

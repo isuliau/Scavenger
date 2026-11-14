@@ -21,7 +21,7 @@ public class Cursor : MonoBehaviour
 
     void Update()
     {
-        
+        if(Time.timeScale == 0) return;
         Vector3 PivotVector = Camera.main.WorldToScreenPoint(Pivot.position);
         PivotVector = (Vector3)Mouse.current.position.ReadValue() - PivotVector;
 

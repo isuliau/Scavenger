@@ -22,7 +22,7 @@ public class tree : MonoBehaviour
         Destroy(gameObject);
         hasDroppedWood = true;
         spawner.validTilePositions.Add(spawner.Tilemap.WorldToCell(transform.position - Vector3.up * 0.25f));
-        GameObject ObjectClone = Instantiate(item, transform.position - new Vector3(0f, 1f, 0f), quaternion.identity);
+        GameObject ObjectClone = Instantiate(item, transform.position, quaternion.identity);
         ObjectClone.SetActive(true);
     
     }
