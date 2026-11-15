@@ -23,9 +23,7 @@ public class item : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, collision.transform.position, .03f);
             if (transform.position.x > collision.transform.position.x - 0.5f && transform.position.x < collision.transform.position.x + 0.5f && transform.position.y > collision.transform.position.y - 0.5f && transform.position.y < collision.transform.position.y + 0.5f)
             {
-                
                 isCollected = true;
-                GetComponent<Collider2D>().enabled = false;
                 int leftoveritems = inventoryManager.AddItem(itemname, quantity, sprite);
                 if(leftoveritems <= 0)
                 Destroy(gameObject);

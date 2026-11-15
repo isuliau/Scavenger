@@ -5,18 +5,17 @@ using Unity.Mathematics;
 public class tree : MonoBehaviour
 {
     public GameObject item;
-    private Slider slider;
+    public Slider slider;
      private bool hasDroppedWood;
      public Spawner spawner;
     void Start()
     {
-        
-        slider = gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>();
+        slider = gameObject.transform.GetChild(0).GetComponent<Slider>();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
          if (hasDroppedWood) return;
-         if (!collision.CompareTag("Weapon")) return;
+         if (!collision.CompareTag("Weapon") || !collision.GetComponent<Cursor>().breaksTrees) return;
         slider.gameObject.SetActive(true);
         if(slider.value > 0f) return;
         Destroy(gameObject);

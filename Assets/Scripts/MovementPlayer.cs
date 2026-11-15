@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using Vector2 = UnityEngine.Vector2;
 
 public class MovementPlayer : MonoBehaviour
@@ -7,6 +9,8 @@ public class MovementPlayer : MonoBehaviour
     private Vector2 movement;
     private PlayerControls playerControls;
     private Animator anim;
+    public InventoryManager inventoryManager;
+    private int slot;
 
 Rigidbody2D rb;
 
@@ -36,7 +40,13 @@ playerControls.Disable();
     }
     void FixedUpdate()
     {
-
         rb.MovePosition(rb.position + movement * movespeed * Time.fixedDeltaTime);
+    }
+
+    public void OnHotbarKeyPressed(InputAction.CallbackContext context)
+    {
+     slot = Mathf.RoundToInt(context.ReadValue<float>())-1;
+        
+     if (slot != -1) inventoryManager.PlayerHotbar(slot);
     }
 }

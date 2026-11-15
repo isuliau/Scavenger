@@ -14,7 +14,7 @@ public class itemSlot : MonoBehaviour
     public int AddItem(string itemname, int quantity, Sprite itemsprite)
     {
         if (isFull) return quantity;
-        this.itemName = itemname;
+        itemName = itemname;
         this.itemsprite = itemsprite;
         itemImage.sprite = itemsprite;
         itemImage.enabled = true;

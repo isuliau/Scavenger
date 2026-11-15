@@ -11,6 +11,7 @@ public class Cursor : MonoBehaviour
     public float damage;
     public Slider slider;
     
+    public bool breaksTrees = true;
 
     void Start()
     {
@@ -33,6 +34,6 @@ public class Cursor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "tree"){ slider = collision.transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>(); slider.value = slider.value - damage;}
+        if(collision.tag == "tree" && breaksTrees){ slider = collision.transform.GetChild(0).GetComponent<Slider>(); slider.value = slider.value - damage;}
     }
 }
