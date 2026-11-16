@@ -94,9 +94,11 @@ MonoBehaviour:
   itemName: 
   quantity: 0
   itemsprite: {fileID: 0}
+  panel: {fileID: 7554441123357341744}
   isFull: 0
   quantitytext: {fileID: 2865082550000172186}
   itemImage: {fileID: 3837841536484515073}
+  inventoryManager: {fileID: 0}
   maxItems: 99
 --- !u!1 &3718976231759719413
 GameObject:

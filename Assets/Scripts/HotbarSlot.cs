@@ -1,11 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor.Search;
-using System;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
 public class HotbarSlot : MonoBehaviour, IPointerClickHandler
@@ -46,15 +41,15 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
     public void Onleftclick()
     {
         inventoryManager.DeselectSlots();
-        panel.SetActive(true);
-        itemsselected = true;
-        if(itemsprite != background) cursor.GetComponent<SpriteRenderer>().sprite = itemsprite;
-        else itemsprite = mouse;
-        if(itemName == "Wood") scaleSprite = new Vector3 (0.3f, 0.3f, 1);
-        else scaleSprite = new Vector3(1, 1, 1);
-        cursor.transform.localScale = scaleSprite;
-        if(itemsprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
-        else  cursor.GetComponent<Cursor>().breaksTrees = true;
+        panel.SetActive(!panel.activeInHierarchy);
+        itemsselected = !panel.activeInHierarchy;
+    if (itemsprite != background) cursor.GetComponent<SpriteRenderer>().sprite = itemsprite;
+    else cursor.GetComponent<SpriteRenderer>().sprite = mouse;
+    if (itemName == "Wood") scaleSprite = new Vector3(0.3f, 0.3f, 1);
+    else scaleSprite = new Vector3(1, 1, 1);
+    cursor.transform.localScale = scaleSprite;
+    if (cursor.GetComponent<SpriteRenderer>().sprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
+    else cursor.GetComponent<Cursor>().breaksTrees = true;
     }
 
 }
