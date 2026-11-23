@@ -11,8 +11,9 @@ public class MovementPlayer : MonoBehaviour
     private Animator anim;
     public InventoryManager inventoryManager;
     private int slot;
-    public BoxCollider2D boxCollider2D;
+    private BoxCollider2D boxCollider2D;
 Rigidbody2D rb;
+private EnterShop shop;
 
     void Awake()
     {
@@ -22,11 +23,13 @@ Rigidbody2D rb;
     }
     private void OnEnable()
     {
-playerControls.Enable();        
+        playerControls.Enable();
+        playerControls.Movement.E.performed += OnInteract;
     }
     private void OnDisable()
     {
-playerControls.Disable();        
+        playerControls.Movement.E.performed -= OnInteract;
+        playerControls.Disable();
     }
 
     void Update()
@@ -48,8 +51,25 @@ playerControls.Disable();
         
      if (slot != -1) inventoryManager.PlayerHotbar(slot);
     }
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    } 
+        if (collision.CompareTag("Shop"))
+        {
+            shop = collision.GetComponent<EnterShop>();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<EnterShop>() == shop) shop = null;
+    }
+
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        E();
+    }
+    public void  E()
+    {
+        if(shop != null) shop.E();
+    }
 }

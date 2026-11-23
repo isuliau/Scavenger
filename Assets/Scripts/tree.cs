@@ -14,7 +14,7 @@ public class tree : MonoBehaviour
          if (hasDroppedWood) return;
          if (!collision.CompareTag("Weapon") || !collision.GetComponent<Cursor>().breaksTrees) return;
         slider.gameObject.SetActive(true);
-        if(slider.transform.localScale.x > 0.2f) return;
+        if(slider.transform.localScale.x > 0.1f) return;
         hasDroppedWood = true;
         spawner.validTilePositions.Add(spawner.Tilemap.WorldToCell(transform.position - Vector3.up * 0.25f));
         GameObject ObjectClone = Instantiate(item, transform.position, quaternion.identity);
