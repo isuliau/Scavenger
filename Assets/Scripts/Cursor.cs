@@ -9,7 +9,6 @@ public class Cursor : MonoBehaviour
     public int form;
     private Transform pivot;
     public float damage;
-    public Slider slider;
     
     public bool breaksTrees = true;
 
@@ -34,6 +33,6 @@ public class Cursor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "tree" && breaksTrees){ slider = collision.transform.GetChild(0).GetComponent<Slider>(); slider.value = slider.value - damage;}
+        if(collision.tag == "tree" && breaksTrees){ collision.GetComponent<tree>().sliderDamage(damage); collision.transform.GetChild(0).gameObject.SetActive(true); collision.transform.GetChild(1).gameObject.SetActive(true); }
     }
 }

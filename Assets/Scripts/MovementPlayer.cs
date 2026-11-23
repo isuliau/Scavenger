@@ -11,7 +11,7 @@ public class MovementPlayer : MonoBehaviour
     private Animator anim;
     public InventoryManager inventoryManager;
     private int slot;
-
+    public BoxCollider2D boxCollider2D;
 Rigidbody2D rb;
 
     void Awake()
@@ -33,8 +33,7 @@ playerControls.Disable();
     {
         movement = playerControls.Movement.Move.ReadValue<Vector2>();
         anim.SetFloat("X", movement.x); anim.SetFloat("Y", movement.y);
-         if(movement.x != 0 && movement.y != 0) {movement = new Vector2 (0,0); anim.SetBool("NotMoving", true);}
-        else if(movement == new Vector2 (0,0)) anim.SetBool("NotMoving", true);
+        if(movement == new Vector2 (0,0)) anim.SetBool("NotMoving", true);
         else anim.SetBool("NotMoving", false);
        
     }
@@ -49,4 +48,8 @@ playerControls.Disable();
         
      if (slot != -1) inventoryManager.PlayerHotbar(slot);
     }
+    void OnTriggerEnter2D()
+    {
+        
+    } 
 }

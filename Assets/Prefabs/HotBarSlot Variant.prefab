@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 866c9e5c1da2fce46aa96c73b5e8fe7d, type: 2}
-  m_sharedMaterial: {fileID: -8428745088451479932, guid: 866c9e5c1da2fce46aa96c73b5e8fe7d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 71b4ed0251c9a704a9c127385b4b7c12, type: 2}
+  m_sharedMaterial: {fileID: 3518066947311614612, guid: 71b4ed0251c9a704a9c127385b4b7c12, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -157,6 +157,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2865082550000172186, guid: 17f2c25c6b0b60f4d9d5526846f9e73d, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3518066947311614612, guid: 71b4ed0251c9a704a9c127385b4b7c12, type: 2}
+    - target: {fileID: 2865082550000172186, guid: 17f2c25c6b0b60f4d9d5526846f9e73d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3302705213680721482, guid: 17f2c25c6b0b60f4d9d5526846f9e73d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -171,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3302705213680721482, guid: 17f2c25c6b0b60f4d9d5526846f9e73d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -11.3373
+      value: -11.337
       objectReference: {fileID: 0}
     - target: {fileID: 3302705213680721482, guid: 17f2c25c6b0b60f4d9d5526846f9e73d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -356,8 +364,8 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   quantity: 0
   itemsprite: {fileID: -2720922381176439266, guid: c57d412f6768adb43b356d52a410340b, type: 3}
-  background: {fileID: 0}
-  mouse: {fileID: 0}
+  background: {fileID: -2720922381176439266, guid: c57d412f6768adb43b356d52a410340b, type: 3}
+  mouse: {fileID: -4750761433519615375, guid: cb6ec1a0ef5e8204baa067478f36bff7, type: 3}
   isFull: 0
   quantitytext: {fileID: 6065196661794192063}
   itemImage: {fileID: 5547334361907526532}

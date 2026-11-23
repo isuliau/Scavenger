@@ -8,9 +8,10 @@ public class itemSlot : MonoBehaviour, IPointerClickHandler
     public string itemName;
     public int quantity;
     public Sprite itemsprite;
+    public Sprite blank;
     public GameObject panel;
     public bool isFull;
-    [SerializeField] private TMP_Text quantitytext;
+    [SerializeField] public TMP_Text quantitytext;
     [SerializeField] private Image itemImage;
     public InventoryManager inventoryManager;
     public int maxItems;
@@ -45,9 +46,27 @@ public void OnPointerClick(PointerEventData eventData)
     
     public void Onleftclick()
     {
-        inventoryManager.DeselectSlotsInventory();
-        panel.SetActive(true);
+        inventoryManager.SelectOrSwap(this);
     }
+    public void SwapContents(itemSlot other)
+{
+    (itemName, other.itemName) = (other.itemName, itemName);
+    (quantity, other.quantity) = (other.quantity, quantity);
+    (itemsprite, other.itemsprite) = (other.itemsprite, itemsprite);
+// I didnt know this before
+    RefreshUI();
+    other.RefreshUI();
+}
 
+public void RefreshUI()
+{
+    isFull = quantity >= maxItems;
+    bool hasItem = quantity > 0;
+    itemImage.enabled = hasItem;
+    if (hasItem)  itemImage.sprite = itemsprite;
+    else itemImage.sprite = blank;
+    quantitytext.enabled = hasItem;
+    quantitytext.text = hasItem ? quantity.ToString() : "";
+}
    
 }

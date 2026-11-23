@@ -10,7 +10,6 @@ public class Spawner : MonoBehaviour
     public Tilemap Tilemap;          
     public GameObject objectToSpawn;        
     public float spawnInterval = 5f;       
-    public GameObject canvas;
     Vector3Int cellPosition;
     BoundsInt bounds;
 
@@ -42,7 +41,6 @@ public class Spawner : MonoBehaviour
         validTilePositions.Remove(cellPosition);
         UnityEngine.Vector3 spawnPos = Tilemap.GetCellCenterWorld(cellPosition) + UnityEngine.Vector3.up * 0.25f;
         GameObject ObjectClone = Instantiate(objectToSpawn, spawnPos, quaternion.identity);
-    ObjectClone.transform.SetParent(canvas.transform);
     ObjectClone.SetActive(true);
         }
         else return;

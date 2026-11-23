@@ -7,29 +7,24 @@ public class item : MonoBehaviour
     [SerializeField] private int quantity;
     [SerializeField] private Sprite sprite;
     private InventoryManager inventoryManager;
-    private bool isCollected;
-
-    void Start()
+    public bool touched = false;
+    public Collider2D player;
+    
+        void Start()
     {
         inventoryManager = GameObject.Find("CanvasInventory").GetComponent<InventoryManager>();
     }
-
-    void OnTriggerStay2D(Collider2D collision)
+    void Update()
     {
-        if (isCollected) return;
-
-        if (collision.tag == "Player")
-        {
-            transform.position = Vector3.MoveTowards(transform.position, collision.transform.position, .03f);
-            if (transform.position.x > collision.transform.position.x - 0.5f && transform.position.x < collision.transform.position.x + 0.5f && transform.position.y > collision.transform.position.y - 0.5f && transform.position.y < collision.transform.position.y + 0.5f)
+        if (!touched) return;
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, .09f);
+            if (transform.position.x > player.transform.position.x - 0.5f && transform.position.x < player.transform.position.x + 0.5f && transform.position.y > player.transform.position.y - 0.5f && transform.position.y < player.transform.position.y + 0.5f)
             {
-                isCollected = true;
                 int leftoveritems = inventoryManager.AddItem(itemname, quantity, sprite);
                 if(leftoveritems <= 0)
                 Destroy(gameObject);
                 else 
                 quantity = leftoveritems;
             }
-        }
     }
 }

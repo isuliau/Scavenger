@@ -93,7 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   itemName: 
   quantity: 0
-  itemsprite: {fileID: 0}
+  itemsprite: {fileID: -2720922381176439266, guid: c57d412f6768adb43b356d52a410340b, type: 3}
+  blank: {fileID: -2720922381176439266, guid: c57d412f6768adb43b356d52a410340b, type: 3}
   panel: {fileID: 7554441123357341744}
   isFull: 0
   quantitytext: {fileID: 2865082550000172186}
@@ -242,7 +243,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 866c9e5c1da2fce46aa96c73b5e8fe7d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 71b4ed0251c9a704a9c127385b4b7c12, type: 2}
   m_sharedMaterial: {fileID: -8428745088451479932, guid: 866c9e5c1da2fce46aa96c73b5e8fe7d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7554441123357341744

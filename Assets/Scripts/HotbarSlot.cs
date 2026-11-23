@@ -37,19 +37,36 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
             Onleftclick();
         }
     }
+    public void SetItem(string newName, int newQuantity, Sprite newSprite)
+{
+    itemName = newName;
+    quantity = newQuantity;
+    itemsprite = newSprite;
+
+    bool hasItem = quantity > 0;
+    if(hasItem)   itemImage.sprite = itemsprite;
+    else  itemImage.sprite = background;
+    quantitytext.enabled = hasItem;
+    if(hasItem)  quantitytext.text = quantity.ToString();
+    else quantitytext.text = "";
     
+}
     public void Onleftclick()
     {
         inventoryManager.DeselectSlots();
         panel.SetActive(!panel.activeInHierarchy);
         itemsselected = !panel.activeInHierarchy;
+        RefreshCursor();
+    }
+public void RefreshCursor()
+    {
     if (itemsprite != background) cursor.GetComponent<SpriteRenderer>().sprite = itemsprite;
     else cursor.GetComponent<SpriteRenderer>().sprite = mouse;
     if (itemName == "Wood") scaleSprite = new Vector3(0.3f, 0.3f, 1);
+    else if (itemName == "Shop") scaleSprite = new Vector3(0.08f, 0.08f, 1);
     else scaleSprite = new Vector3(1, 1, 1);
     cursor.transform.localScale = scaleSprite;
     if (cursor.GetComponent<SpriteRenderer>().sprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
     else cursor.GetComponent<Cursor>().breaksTrees = true;
     }
-
 }
