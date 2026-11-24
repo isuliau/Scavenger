@@ -12,7 +12,7 @@ public class FlashWhite : MonoBehaviour
     [SerializeField] private Material whiteMaterial;
     private Material originalMaterial;
     private Material flashMaterial;
-
+public bool onstart; 
 
     void Awake()
     {
@@ -20,7 +20,7 @@ public class FlashWhite : MonoBehaviour
             targetRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = targetRenderer.sharedMaterial;
         flashMaterial = new Material(whiteMaterial);
-        StartCoroutine(FlashRoutine());
+        if (onstart)StartCoroutine(FlashRoutine());
     }
 
     private IEnumerator FlashRoutine()

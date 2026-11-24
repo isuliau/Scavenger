@@ -689,7 +689,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -6
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -781,7 +781,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1536,7 +1536,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -3204,7 +3204,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3686,7 +3686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1053827632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4376,13 +4376,13 @@ MonoBehaviour:
     m_ActionName: 'Movement/Hotbar[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4,/Keyboard/5]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1185498896}
+        m_TargetAssemblyTypeName: MovementPlayer, Assembly-CSharp
+        m_MethodName: E
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4409,7 +4409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovementPlayer
   movespeed: 2
   inventoryManager: {fileID: 283914715}
-  boxCollider2D: {fileID: 1185498899}
 --- !u!50 &1185498897
 Rigidbody2D:
   serializedVersion: 5
@@ -7040,7 +7039,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -8266,7 +8265,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -11936,6 +11935,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810694237147895093, guid: 67ebb4b83f8fa544bb3b096dcc265bb4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.4323156
+      objectReference: {fileID: 0}
+    - target: {fileID: 810694237147895093, guid: 67ebb4b83f8fa544bb3b096dcc265bb4, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0480583
+      objectReference: {fileID: 0}
+    - target: {fileID: 810694237147895093, guid: 67ebb4b83f8fa544bb3b096dcc265bb4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0011972189
+      objectReference: {fileID: 0}
+    - target: {fileID: 810694237147895093, guid: 67ebb4b83f8fa544bb3b096dcc265bb4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.18395942
+      objectReference: {fileID: 0}
     - target: {fileID: 1732302078934613767, guid: 67ebb4b83f8fa544bb3b096dcc265bb4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
