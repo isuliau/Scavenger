@@ -2,12 +2,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using Image = UnityEngine.UI.Image;
+using UnityEditor.Search;
 
 public class HotbarSlot : MonoBehaviour, IPointerClickHandler
 {
     public string itemName;
     public GameObject cursor;
-
+    private SpriteRenderer CursorspriteRenderer;
    public InventoryManager inventoryManager;
     public int quantity;
     public Sprite itemsprite;
@@ -19,8 +20,12 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
     public GameObject panel;
     public bool itemsselected;
     public int maxItems;
-    private Vector3 scaleSprite; 
-   public void AddItem(string itemname, int quantity, Sprite itemsprite)
+    private Vector3 scaleSprite;
+    void Start()
+    {
+      CursorspriteRenderer = cursor.GetComponent<SpriteRenderer>();
+    }
+    public void AddItem(string itemname, int quantity, Sprite itemsprite)
     {
         itemName = itemname;
         this.quantity += quantity;
@@ -35,6 +40,10 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             Onleftclick();
+        }
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            OnRightclick();
         }
     }
     public void SetItem(string newName, int newQuantity, Sprite newSprite)
@@ -53,20 +62,29 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
 }
     public void Onleftclick()
     {
+        
         inventoryManager.DeselectSlots();
-        panel.SetActive(!panel.activeInHierarchy);
-        itemsselected = !panel.activeInHierarchy;
+        if(itemsselected) {itemsselected = false; return;}
+        panel.SetActive(true);
+        itemsselected = true;
         RefreshCursor();
+    }
+    public void OnRightclick()
+    {
+        if(itemsselected) inventoryManager.DeselectSlots();
+        CursorspriteRenderer.sprite = mouse;
+        scaleSprite = new Vector3(1, 1, 1);
+        cursor.transform.localScale = scaleSprite;
+        cursor.GetComponent<Cursor>().breaksTrees = true;
     }
 public void RefreshCursor()
     {
-    if (itemsprite != background) cursor.GetComponent<SpriteRenderer>().sprite = itemsprite;
-    else cursor.GetComponent<SpriteRenderer>().sprite = mouse;
+    if (itemsprite != background) CursorspriteRenderer.sprite = itemsprite;
+    else CursorspriteRenderer.sprite = mouse;
     if (itemName == "Wood") scaleSprite = new Vector3(0.3f, 0.3f, 1);
-    else if (itemName == "Shop") scaleSprite = new Vector3(0.08f, 0.08f, 1);
     else scaleSprite = new Vector3(1, 1, 1);
     cursor.transform.localScale = scaleSprite;
-    if (cursor.GetComponent<SpriteRenderer>().sprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
+    if (CursorspriteRenderer.sprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
     else cursor.GetComponent<Cursor>().breaksTrees = true;
     }
 }

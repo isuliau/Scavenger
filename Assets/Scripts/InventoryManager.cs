@@ -86,6 +86,7 @@ public void DeselectSlots()
         for (int i = 0; i < hotbarSlot.Length; i++)
         {
             hotbarSlot[i].panel.SetActive(false);
+            hotbarSlot[i].itemsselected = false;
         }
     }
     private itemSlot selectedSlot;

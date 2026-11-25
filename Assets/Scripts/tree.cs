@@ -37,7 +37,6 @@ public class tree : MonoBehaviour
     {
          if (hasDroppedWood||!collision.CompareTag("Weapon") || !collision.GetComponent<Cursor>().breaksTrees) return;
         slider.gameObject.SetActive(true);
-       if(direction) direction = false;
         if(slider.transform.localScale.x > 0.1f) return;
         hasDroppedWood = true;
         spawner.validTilePositions.Add(spawner.Tilemap.WorldToCell(transform.position - Vector3.up * 0.25f));
@@ -57,8 +56,7 @@ public class tree : MonoBehaviour
     }
     private void StartShake()
     {
-         if (shakeCoroutine != null)
-            StopCoroutine(shakeCoroutine);
+         if (shakeCoroutine != null) StopCoroutine(shakeCoroutine);
             originalPosition.position = basePosition;
             direction =!direction;
             shakeCoroutine = StartCoroutine(ShakeForseconds());

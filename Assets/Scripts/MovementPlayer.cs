@@ -11,7 +11,6 @@ public class MovementPlayer : MonoBehaviour
     private Animator anim;
     public InventoryManager inventoryManager;
     private int slot;
-    private BoxCollider2D boxCollider2D;
 Rigidbody2D rb;
 private EnterShop shop;
 
@@ -24,11 +23,9 @@ private EnterShop shop;
     private void OnEnable()
     {
         playerControls.Enable();
-        playerControls.Movement.E.performed += OnInteract;
     }
     private void OnDisable()
     {
-        playerControls.Movement.E.performed -= OnInteract;
         playerControls.Disable();
     }
 
@@ -64,10 +61,6 @@ private EnterShop shop;
         if (collision.GetComponent<EnterShop>() == shop) shop = null;
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
-    {
-        E();
-    }
     public void  E()
     {
         if(shop != null) shop.E();

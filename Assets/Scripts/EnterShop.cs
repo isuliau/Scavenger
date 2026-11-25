@@ -5,11 +5,13 @@ public class EnterShop : MonoBehaviour
 {
     public bool close = false;
     public BuildManager buildManager;
+    public InventoryOpenAndClose inventoryOpenAndClose;
     public Sprite Epressed;
     public Sprite EE; 
     void Start()
     {
-    buildManager = GameObject.Find("BuildManager").GetComponent<BuildManager>();        
+    buildManager = GameObject.Find("BuildManager").GetComponent<BuildManager>();  
+    inventoryOpenAndClose = GameObject.Find("CanvasInventory").GetComponent<InventoryOpenAndClose>();  
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +19,6 @@ public class EnterShop : MonoBehaviour
       {
           if (!buildManager.isBuild) gameObject.transform.GetChild(0).gameObject.SetActive(true);
           close = true;
-          gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = EE;
       }
     }
      void OnTriggerExit2D(Collider2D collision)
@@ -26,12 +27,14 @@ public class EnterShop : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             close = false;
-            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = EE;
         }
     }
     
     public void E()
     {
-        if (close) {gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Epressed;}
+        if (close && inventoryOpenAndClose.esc.activeSelf) {
+        inventoryOpenAndClose.toggleshop(true);
+        inventoryOpenAndClose.Inventorytoggle();
+        }
     }
 }
