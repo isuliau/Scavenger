@@ -7,7 +7,8 @@ public class item : MonoBehaviour
     [SerializeField] private int quantity;
     [SerializeField] private Sprite sprite;
     private InventoryManager inventoryManager;
-    public bool touched = false;
+    public bool touched= false;
+    
     public Collider2D player;
     
         void Start()
@@ -20,6 +21,8 @@ public class item : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, .09f);
             if (transform.position.x > player.transform.position.x - 0.5f && transform.position.x < player.transform.position.x + 0.5f && transform.position.y > player.transform.position.y - 0.5f && transform.position.y < player.transform.position.y + 0.5f)
             {
+
+                Debug.Log("gettingpastthischeck");
                 int leftoveritems = inventoryManager.AddItem(itemname, quantity, sprite);
                 if(leftoveritems <= 0)
                 Destroy(gameObject);

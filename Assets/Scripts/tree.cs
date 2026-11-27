@@ -20,6 +20,7 @@ public class tree : MonoBehaviour
     private Transform sliderTransform;
     private Vector3 basePosition;
     private Coroutine shakeCoroutine;
+    public bool istree;
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -35,11 +36,14 @@ public class tree : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-         if (hasDroppedWood||!collision.CompareTag("Weapon") || !collision.GetComponent<Cursor>().breaksTrees) return;
-        slider.gameObject.SetActive(true);
+         if (hasDroppedWood)return;
+          if( !collision.CompareTag("Weapon") ) return;
+          if((!collision.GetComponent<Cursor>().breaksTrees && istree) || (!collision.GetComponent<Cursor>().breaksRock && !istree)) return;
         if(slider.transform.localScale.x > 0.1f) return;
         hasDroppedWood = true;
+        GetComponent<Collider2D>().enabled = false;
         spawner.validTilePositions.Add(spawner.Tilemap.WorldToCell(transform.position - Vector3.up * 0.25f));
+
         GameObject ObjectClone = Instantiate(item, transform.position, quaternion.identity);
         ObjectClone.SetActive(true);
         Destroy(gameObject);

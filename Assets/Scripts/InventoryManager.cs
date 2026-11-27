@@ -14,31 +14,38 @@ public class InventoryManager : MonoBehaviour
     public int Quantity;
     public Sprite itemSprite;
     public bool isfull;
-   public int AddItem(string itemname, int quantity, Sprite itemsprite)
+  public int AddItem(string itemname, int quantity, Sprite itemsprite)
+{
+    for (int i = 0; i < itemSlot.Length; i++)
     {
-       for (int i = 0; i < itemSlot.Length; i++)
-       {
         if (!itemSlot[i].isFull && itemSlot[i].itemName == itemname)
-            {
-                int leftoveritems = itemSlot[i].AddItem(itemname, quantity, itemsprite);
-                if (leftoveritems > 0) leftoveritems = AddItem(itemname, leftoveritems, itemsprite);
-                if(i<4) {hotbarSlot[i].AddItem(itemname, quantity, itemsprite); for (int x = 0; x < 4; x++) if(hotbarSlot[x].panel.activeInHierarchy) hotbarSlot[x].RefreshCursor();}
-                return leftoveritems;
-            }
-       }
+        {
+            int leftoveritems = itemSlot[i].AddItem(itemname, quantity, itemsprite);
+            if (leftoveritems > 0) leftoveritems = AddItem(itemname, leftoveritems, itemsprite);
+            SyncHotbar();
+            return leftoveritems;
+        }
+    }
 
-       for (int i = 0; i < itemSlot.Length; i++)
-       {
+    for (int i = 0; i < itemSlot.Length; i++)
+    {
         if (itemSlot[i].quantity == 0)
-            {
-                int leftoveritems = itemSlot[i].AddItem(itemname, quantity, itemsprite);
-                if (leftoveritems > 0) leftoveritems = AddItem(itemname, leftoveritems, itemsprite);
-                if(i<4) {hotbarSlot[i].AddItem(itemname, quantity, itemsprite); for (int x = 0; x < 4; x++) if(hotbarSlot[x].panel.activeInHierarchy) hotbarSlot[x].RefreshCursor();}
-                return leftoveritems;
-            }
-       }
+        {
+            int leftoveritems = itemSlot[i].AddItem(itemname, quantity, itemsprite);
+            if (leftoveritems > 0) leftoveritems = AddItem(itemname, leftoveritems, itemsprite);
+            SyncHotbar();
+            return leftoveritems;
+        }
+    }
     return quantity;
-    } 
+}
+
+private void SyncHotbar()
+{
+    RefreshHotbar();
+    for (int x = 0; x < hotbarSlot.Length; x++)
+        if (hotbarSlot[x].panel.activeInHierarchy) hotbarSlot[x].RefreshCursor();
+}
      public int TotalItems(string Itemname)
   {
     int total = 0; 
@@ -49,6 +56,26 @@ public class InventoryManager : MonoBehaviour
         }
     return total;
   }
+  public bool HasResources(string[] names, int[] amounts)
+{
+    if (names == null || amounts == null || names.Length != amounts.Length) return false;
+
+    for (int i = 0; i < names.Length; i++)
+    {
+        if (TotalItems(names[i]) < amounts[i]) return false;
+    }
+    return true;
+}
+public bool SubtractResources(string[] names, int[] amounts)
+{
+    if (!HasResources(names, amounts)) return false;
+
+    for (int i = 0; i < names.Length; i++)
+    {
+        subtractItems(names[i], amounts[i]);
+    }
+    return true;
+    }
   public int subtractItems(string Itemname, int ammount)
   {
     if (ammount <= 0) return 0;

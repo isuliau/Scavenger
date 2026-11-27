@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
     public Tilemap Tilemap;          
-    public GameObject objectToSpawn;        
+    public GameObject objectToSpawn1;
+    public GameObject objectToSpawn2;        
     public float spawnInterval = 5f;       
     Vector3Int cellPosition;
     BoundsInt bounds;
+    
+    private int chooseThingToSpawn;
 
     public List<Vector3Int> validTilePositions = new List<Vector3Int>();
 
@@ -19,6 +23,10 @@ public class Spawner : MonoBehaviour
     {
         SaveAllTiles();
         InvokeRepeating(nameof(RandomTile), 0, spawnInterval);
+        for (int i = 0; i < 5; i++)
+        {
+            RandomTile();
+        }
     }
     
     private void SaveAllTiles()
@@ -40,8 +48,11 @@ public class Spawner : MonoBehaviour
         cellPosition = validTilePositions[randomindex];
         validTilePositions.Remove(cellPosition);
         UnityEngine.Vector3 spawnPos = Tilemap.GetCellCenterWorld(cellPosition) + UnityEngine.Vector3.up * 0.25f;
-        GameObject ObjectClone = Instantiate(objectToSpawn, spawnPos, quaternion.identity);
-    ObjectClone.SetActive(true);
+        chooseThingToSpawn = UnityEngine.Random.Range(0, 2);
+        GameObject ObjectClone;
+        if (chooseThingToSpawn == 0) ObjectClone = Instantiate(objectToSpawn1, spawnPos, quaternion.identity);
+        else ObjectClone = Instantiate(objectToSpawn2, spawnPos, quaternion.identity);
+        ObjectClone.SetActive(true);
         }
         else return;
     }

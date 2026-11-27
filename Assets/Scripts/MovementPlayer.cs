@@ -7,7 +7,7 @@ public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private float movespeed = 5;
     private Vector2 movement;
-    private PlayerControls playerControls;
+    private InputAction moveAction;
     private Animator anim;
     public InventoryManager inventoryManager;
     private int slot;
@@ -16,22 +16,13 @@ private EnterShop shop;
 
     void Awake()
     {
-        playerControls = new PlayerControls();
+        moveAction = GetComponent<PlayerInput>().actions.FindAction("Movement/Move", true);
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
     void Update()
     {
-        movement = playerControls.Movement.Move.ReadValue<Vector2>();
+        movement = movement = moveAction.ReadValue<Vector2>();
         anim.SetFloat("X", movement.x); anim.SetFloat("Y", movement.y);
         if(movement == new Vector2 (0,0)) anim.SetBool("NotMoving", true);
         else anim.SetBool("NotMoving", false);

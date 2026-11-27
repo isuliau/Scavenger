@@ -15,6 +15,8 @@ public GameObject previewObject;
     public GameObject structureToBuild;
     public string resourceName;
     public int resourceCost;
+      public string[] resourceNames;
+    public int[] resourceCosts;
 
     public bool isBuild;
     private Vector3Int currentCell;
@@ -27,13 +29,14 @@ public GameObject previewObject;
          if (Mouse.current.rightButton.wasPressedThisFrame)
             CancelBuild();
     }
-    public void StartBuildMode(GameObject structurePrefab, string name, int ammount)
+    public void StartBuildMode(GameObject structurePrefab, string[] names, int[] amounts)
     {
-        if(inventoryManager.TotalItems(name)< ammount) return;
+        if (!inventoryManager.HasResources(names, amounts)) return;
+
         inventoryOpenAndClose.Inventorytoggle();
         structureToBuild = structurePrefab;
-        resourceName = name;
-        resourceCost = ammount;
+        resourceNames = names;
+        resourceCosts = amounts;
         isBuild = true;
         previewObject = Instantiate(structureToBuild);
         previewObject.GetComponent<Collider2D>().enabled = false;
@@ -50,7 +53,8 @@ public GameObject previewObject;
     void TryPlaceStructure()
     {
            if (!CanBuildAt(currentCell)) return;
-        inventoryManager.subtractItems(resourceName, resourceCost);
+            if (!inventoryManager.SubtractResources(resourceNames, resourceCosts)) return;
+
         UnityEngine.Vector3 buildPosition = tilemap.GetCellCenterWorld(currentCell);
         Instantiate(structureToBuild, buildPosition, UnityEngine.Quaternion.identity);
         treeSpawner.validTilePositions.Remove(currentCell);

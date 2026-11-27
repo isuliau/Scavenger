@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Image = UnityEngine.UI.Image;
 using UnityEditor.Search;
+using UnityEditor.Experimental.GraphView;
 
 public class HotbarSlot : MonoBehaviour, IPointerClickHandler
 {
@@ -76,15 +77,21 @@ public class HotbarSlot : MonoBehaviour, IPointerClickHandler
         scaleSprite = new Vector3(1, 1, 1);
         cursor.transform.localScale = scaleSprite;
         cursor.GetComponent<Cursor>().breaksTrees = true;
+        cursor.GetComponent<Cursor>().damage = 5;
     }
 public void RefreshCursor()
     {
     if (itemsprite != background) CursorspriteRenderer.sprite = itemsprite;
-    else CursorspriteRenderer.sprite = mouse;
+    else {CursorspriteRenderer.sprite = mouse; cursor.GetComponent<Cursor>().damage = 5;}
     if (itemName == "Wood") scaleSprite = new Vector3(0.3f, 0.3f, 1);
-    else scaleSprite = new Vector3(1, 1, 1);
+    else if (itemName == "Stone") scaleSprite = new Vector3(0.2f, 0.2f, 1);
+    else if (itemName == "Pickaxe") {scaleSprite = new Vector3(0.3f, 0.3f, 1); cursor.GetComponent<Cursor>().damage = 10;}
+    else if (itemName == "Axe") {scaleSprite = new Vector3(0.3f, 0.3f, 1);cursor.GetComponent<Cursor>().damage = 10;} 
+    else {scaleSprite = new Vector3(1, 1, 1); cursor.GetComponent<Cursor>().damage = 5;}
     cursor.transform.localScale = scaleSprite;
-    if (CursorspriteRenderer.sprite != mouse) cursor.GetComponent<Cursor>().breaksTrees = false;
+    if (CursorspriteRenderer.sprite != mouse && itemName != "Axe") cursor.GetComponent<Cursor>().breaksTrees = false;
     else cursor.GetComponent<Cursor>().breaksTrees = true;
+    if (CursorspriteRenderer.sprite == mouse || itemName != "Pickaxe")  cursor.GetComponent<Cursor>().breaksRock = false;
+    else cursor.GetComponent<Cursor>().breaksRock = true;
     }
 }
